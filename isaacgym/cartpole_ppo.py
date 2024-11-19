@@ -640,6 +640,7 @@ class Cartpole(VecTask):
         self.progress_buf[env_ids] = 0
 
     def pre_physics_step(self, actions):
+        import pdb;pdb.set_trace()
         actions_tensor = torch.zeros(self.num_envs * self.num_dof, device=self.device, dtype=torch.float)
         actions_tensor[::self.num_dof] = actions.to(self.device).squeeze() * self.max_push_effort
         forces = gymtorch.unwrap_tensor(actions_tensor)
